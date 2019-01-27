@@ -15,7 +15,7 @@ class Graph(object):
         id = 0
         with open(filename) as f:
             for line in f:
-                dat == [v.strip() for v in line.split(',')]
+                dat = [v.strip() for v in line.split(',')]
                 a, b = dat[0], dat[1]
                 w = dat[2] if len(dat) >= 3 else 1
                 if a not in g._name2id:
@@ -41,6 +41,7 @@ class Graph(object):
     def get_igraph(self):
         if self._igraph is None:
             self._igraph = igraph.Graph()
+            self._igraph.add_vertices(range(len(self._name2id)))
             for v1, v2, w in self.edges:
                 self._igraph[v1, v2, 'w'] = w
         return self._igraph
