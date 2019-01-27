@@ -42,9 +42,9 @@ def featurize(featurizer_list, graph):
     features = []
     for featurizer in featurizer_list:
         feat = featurizer(graph)
-        if feat.type == 'vector':
+        if feat.type == 'vector':  # feat contains a list of features
             features.extend(feat.value)
-        else:
+        else:  # feat is just a single feature
             features.append(feat)
     return features
 

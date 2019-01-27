@@ -5,7 +5,7 @@ from .features.feature_list import featurizer_list, featurize
 
 def main():
     parseargs = argparse.ArgumentParser()
-    parseargs.add_argument("filename", type=str, help="add an input file to read a graph")
+    parseargs.add_argument("filename", type=str, help="add an input graph csv file in edge list format")
     parseargs.add_argument("-o", "--output", type=str, default="output.csv", help="add an output file name")
     args = parseargs.parse_args()
 
