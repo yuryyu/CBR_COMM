@@ -32,14 +32,24 @@ def cluster_size(graph):
 
 @StatsFeaturizer(input_type='igraph')
 def degree(graph):
-    return graph.degree_distribution()
+    return graph.degree()
 
 @Featurizer(input_type='igraph')
 def density(graph):
     return graph.density()
 
+def featurize(featurizer_list, graph):
+    features = []
+    for featurizer in featurizer_list:
+        feat = featurizer(graph)
+        if feat.type == 'vector':
+            features.extend(feat.value)
+        else:
+            features.append(feat)
+    return features
 
-feature_list = [
+
+featurizer_list = [
     transitivity,
     strength,
     num_nodes,
